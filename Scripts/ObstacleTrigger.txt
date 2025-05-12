@@ -1,0 +1,14 @@
+using UnityEngine;
+
+public class ObstacleTrigger : MonoBehaviour
+{
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Game Over!");
+            gameObject.SetActive(false);
+            // Add any additional logic here (restart, fade, etc.)
+        }
+    }
+}

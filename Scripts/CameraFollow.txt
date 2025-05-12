@@ -1,0 +1,14 @@
+using UnityEngine;
+
+public class CameraFollow : MonoBehaviour
+{
+    public Transform player;
+    public float followSpeed = 5f;
+    public Vector3 cameraoffset; 
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Update()
+    {
+        Vector3 targetPosition = new Vector3(player.position.x + cameraoffset.x, transform.position.y, transform.position.z);
+        transform.position = Vector3.Lerp(transform.position,targetPosition, followSpeed * Time.deltaTime);    
+    }
+}

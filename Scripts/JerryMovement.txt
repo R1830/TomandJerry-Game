@@ -1,0 +1,39 @@
+using UnityEngine;
+
+public class JerryMovement : MonoBehaviour
+{
+    public float movespeed = 5f;
+    public float jumpforce = 5f;
+    private Rigidbody2D rb;
+    private Animator animator;
+    
+   
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        
+    }
+
+    void Update()
+    {
+         float moveInput = Input.GetAxisRaw("Horizontal");
+
+         if (moveInput !=0)
+         {
+            rb.linearVelocity = new Vector2(moveInput * movespeed, rb.linearVelocity.y);
+            animator.SetBool("isRunning", true);
+
+         }
+         else
+         {
+            animator.SetBool("isRunning", false);
+         }
+
+         if (Input.GetKeyDown(KeyCode.Space))
+         {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpforce);
+            animator.SetTrigger("jump");
+         }
+    }
+}

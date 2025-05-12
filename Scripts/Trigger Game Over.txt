@@ -1,0 +1,16 @@
+using UnityEngine;
+
+public class ObstacleTrigger : MonoBehaviour
+{
+    public ScoreManager scoreManager; // Reference to ScoreManager script
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            gameObject.SetActive(false); // Hide the obstacle
+            scoreManager.ShowGameOver(); // Call Game Over
+            Debug.Log("Game Over");
+        }
+    }
+}

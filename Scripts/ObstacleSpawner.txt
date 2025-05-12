@@ -1,0 +1,34 @@
+using UnityEngine;
+
+public class ObstacleSpawner : MonoBehaviour
+{
+    public GameObject obstaclePrefab;
+    public Transform player;
+    public float spawnDistance = 10f;
+    private GameObject currentObstacle;
+
+    void Start()
+    {
+        SpawnObstacle();
+    }
+
+    void Update()
+    {
+        if (currentObstacle && !currentObstacle.activeInHierarchy)
+        {
+            SpawnObstacle();
+        }
+    }
+
+    void SpawnObstacle()
+    {
+        Vector3 spawnPos = new Vector3(player.position.x + Random.Range(spawnDistance, spawnDistance + 5), player.position.y, 0);
+        if (currentObstacle == null)
+            currentObstacle = Instantiate(obstaclePrefab, spawnPos, Quaternion.identity);
+        else
+        {
+            currentObstacle.transform.position = spawnPos;
+            currentObstacle.SetActive(true);
+        }
+    }
+}
